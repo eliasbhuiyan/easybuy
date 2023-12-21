@@ -1,3 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+.heading{
+    @apply font-dm font-bold text-4xl text-primary mb-12;
+}

@@ -6,7 +6,7 @@ export function Navbar() {
       <div className="flex justify-between">
           <div>
             <Link to="/">
-            <span className="font-logo font-normal text-2xl text-primary italic tracking-wider">WooCommerce</span>
+             <img src="/logo.png" className="w-[100px]" alt="" />
             </Link>
           </div>
           <ul className="flex">

@@ -90,8 +90,8 @@ const Footer = () => {
                 575 Crescent Ave. Quakertown, PA 18951
               </p>
             </div>
-            <Link to="/">
-              <h2 className="font-logo font-normal text-2xl text-primary italic tracking-wider">WooCommerce</h2>
+            <Link to="/" className="w-36 inline-block">
+             <img src="/logo-2.png" className="w-full" alt="logo" />
             </Link>
           </div>
         </div>

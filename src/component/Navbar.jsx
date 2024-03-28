@@ -5,8 +5,8 @@ export function Navbar() {
     <div className="container ">
       <div className="flex justify-between">
           <div>
-            <Link to="/">
-             <img src="/logo.png" className="w-[100px]" alt="" />
+            <Link to="/" className="w-36 inline-block">
+             <img src="/logo-2.png" className="w-full" alt="logo" />
             </Link>
           </div>
           <ul className="flex">

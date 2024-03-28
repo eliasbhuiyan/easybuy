@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Breadcrumd from '../component/Breadcrumd';
 import { Pagination } from '../component/Pagination';
 import { Sidebar } from '../component/Sidebar';
@@ -29,8 +29,8 @@ export const Shop = () => {
         <div className='w-full md:w-9/12'>
           <div className='flex justify-end gap-x-1 md:gap-x-10 mb-14'>
             <div>
-              <label for="featured" class="mb-2 text-sm font-medium text-secondary mr-3">Sort by:</label>
-              <select id="featured" class="w-auto md:w-60 border text-secondary text-sm font-dm rounded-lg focus:ring-amber-500 focus:border-amber-500 p-2.5">
+              <label htmlFor="featured" className="mb-2 text-sm font-medium text-secondary mr-3">Sort by:</label>
+              <select id="featured" className="w-auto md:w-60 border text-secondary text-sm font-dm rounded-lg focus:ring-amber-500 focus:border-amber-500 p-2.5">
                 <option hidden selected>Featured</option>
                 <option value="Nagin">Nagin Dance</option>
                 <option value="Nagin">Nagin Dance</option>
@@ -39,8 +39,8 @@ export const Shop = () => {
               </select>
             </div>
             <div>
-              <label for="show" class="mb-2 text-sm font-medium text-secondary mr-3">Show:</label>
-              <select onChange={(e)=>setShowNumber(+e.target.value)} id="show" class="w-auto md:w-60 border text-secondary text-sm font-dm rounded-lg focus:ring-amber-500 focus:border-amber-500 p-2.5">
+              <label htmlFor="show" className="mb-2 text-sm font-medium text-secondary mr-3">Show:</label>
+              <select onChange={(e)=>setShowNumber(+e.target.value)} id="show" className="w-auto md:w-60 border text-secondary text-sm font-dm rounded-lg focus:ring-amber-500 focus:border-amber-500 p-2.5">
                 <option selected value="12">12</option>
                 <option value="24">24</option>
                 <option value="48">48</option>

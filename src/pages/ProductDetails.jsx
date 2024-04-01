@@ -6,11 +6,14 @@ import StarRating from "../component/StarRating";
 import HtmltoText from "../component/HtmltoText";
 import { FindOneProduct } from "../api/api";
 import Loading from "../component/Loading";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const ProductDetails = () => {
   let [searchParams] = useSearchParams();
   const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState(true);
   const [variantID, setvariantID] = useState(0);
+  const [countQuantity, setCountQuantity] = useState(1);
   const [reviewData, setReviewData] = useState({
     rating: "",
     email: "",
@@ -37,19 +40,29 @@ const ProductDetails = () => {
   };
   const handelSubmitReview = () => {
     axios
-      .post(`${import.meta.env.VITE_API_URL}product/review`, {
-        rating: reviewData.rating,
-        comment: reviewData.comment,
-        email: reviewData.email,
-        id: searchParams.get("pid"),
-      })
+      .post(
+        `${import.meta.env.VITE_API_URL}product/review`,
+        {
+          rating: reviewData.rating,
+          comment: reviewData.comment,
+          email: reviewData.email,
+          id: searchParams.get("pid"),
+        },
+        {
+          headers: {
+            Authorization: `Bearer user@${import.meta.env.VITE_PUBLICROUTE}@${
+              import.meta.env.VITE_SWTSECRT
+            }`,
+          },
+        }
+      )
       .then((res) => {
-        // toast.success(res.data.message, {
-        //   position: "bottom-center",
-        //   autoClose: 5000,
-        //   closeOnClick: true,
-        //   theme: "light",
-        // });
+        toast.success(res.data.message, {
+          position: "bottom-center",
+          autoClose: 5000,
+          closeOnClick: true,
+          theme: "light",
+        });
         setReviewData({
           rating: "",
           email: "",
@@ -58,6 +71,7 @@ const ProductDetails = () => {
         });
       })
       .catch((err) => {
+        console.log(err.response.data.error);
         toast.error(err.response.data.error, {
           position: "bottom-center",
           autoClose: 5000,
@@ -72,6 +86,7 @@ const ProductDetails = () => {
 
   return (
     <section className="py-8">
+      <ToastContainer />
       <div className="container">
         <div className="border-b pb-4 mb-6 flex flex-col lg:flex-row justify-around items-center lg:items-start relative">
           <h2 className="text-3xl font-bold lg:text-2xl text-primary font-sans uppercase text-center">
@@ -79,7 +94,7 @@ const ProductDetails = () => {
           </h2>
         </div>
         {/* Product Details */}
-        <div className="flex flex-col lg:flex-row gap-6">
+        <div className="flex flex-col lg:flex-row gap-10">
           <div className="lg:w-1/2 flex gap-2 product_image h-fit">
             {product?.variant.map((item, i) => (
               <div
@@ -182,14 +197,44 @@ const ProductDetails = () => {
                   </ul>
                 </div>
               )}
-              <div className="flex gap-2 items-center mt-2">
-                <p className="text-xl font-sans uppercase font-semibold text-primary  text-start">
-                  Quantity:
-                  <span className="py-1 px-2 rounded-sm font-bold lg:text-2xl text-primary font-sans uppercase text-center">
-                    {product?.variant[variantID]?.quantity}
+              <div className="mt-3">
+                <div className="flex items-center gap-2">
+                  <p className="text-xl font-sans uppercase font-semibold text-primary  text-start">
+                    Quantity:
+                  </p>
+                  <div className="border border-secondary w-fit">
+                    <button
+                      onClick={() =>
+                        countQuantity > 1 && setCountQuantity(countQuantity - 1)
+                      }
+                      className="px-8 py-1 text-xl font-bold"
+                    >
+                      -
+                    </button>
+                    <span className="font-semibold text-primary text-xl">
+                      {countQuantity}
+                    </span>
+                    <button
+                      onClick={() => setCountQuantity(countQuantity + 1)}
+                      className="px-8 py-1 text-xl font-bold"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+                <p className="text-xl font-sans uppercase font-semibold text-primary mt-2 text-start">
+                  Status:
+                  <span className="py-1 px-2 font-normal text-secondary font-sans text-center capitalize">
+                    {product?.variant[variantID]?.quantity > 0
+                      ? "In Stock"
+                      : "Out Of Stock"}
                   </span>
                 </p>
               </div>
+            </div>
+            <div className="flex gap-5 mt-10">
+              <button className="btn">Add To Cart</button>
+              <button className="btn">Buy Now</button>
             </div>
           </div>
         </div>

@@ -1,5 +1,4 @@
 import { AiFillHeart } from "react-icons/ai";
-import { TbReload } from "react-icons/tb";
 import { FaShoppingCart } from "react-icons/fa";
 
 const Product = ({ src, alt, pid }) => {

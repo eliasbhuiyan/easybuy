@@ -66,5 +66,4 @@ const StarRating = ({ getRate }) => {
     </div>
   );
 };
-
 export default StarRating;

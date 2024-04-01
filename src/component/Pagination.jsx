@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import Product from "./Product";
@@ -114,7 +115,6 @@ export const Pagination = ({ itemsPerPage }) => {
   );
 };
 import PropTypes from "prop-types";
-import { Link, useNavigate } from "react-router-dom";
 
 Items.propTypes = {
   currentItems: PropTypes.array.isRequired,

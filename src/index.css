@@ -1,6 +1,86 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-.heading{
+
+.heading {
     @apply font-dm font-bold text-4xl text-primary mb-12;
 }
+
+.catagory .szh-accordion__item-heading {
+    @apply font-dm font-medium text-xl text-primary relative
+}
+
+.catagory .szh-accordion__item-heading::after {
+    @apply absolute content-["+"] right-0 top-1/2 -translate-y-1/2 text-secondary text-2xl
+}
+
+.price .szh-accordion__item-heading::after {
+    @apply absolute content-["+"] right-0 top-3 text-secondary text-2xl
+}
+
+.szh-accordion__item--status-entered .szh-accordion__item-heading::after {
+    @apply rotate-45
+}
+
+.product_image .active {
+    @apply scale-110 border-[#42B42F]
+}
+
+.product_color .active {
+    @apply scale-110 w-7 h-7 border-2 rounded-full border-[#42B42F]
+}
+
+/* ============= Rating  Stars ============== */
+.rating {
+    @apply flex flex-row-reverse border-none justify-end;
+}
+
+.rating>label {
+    @apply text-[#90A0A3] text-3xl inline-block m-[5px];
+}
+
+.rating>input {
+    @apply hidden;
+}
+
+.rating>input:checked~label,
+.rating:not(:checked)>label:hover,
+.rating:not(:checked)>label:hover~label {
+    @apply text-[#F79426];
+}
+
+.rating>input:checked+label:hover,
+.rating>input:checked~label:hover,
+.rating>label:hover~input:checked~label,
+.rating>input:checked~label:hover~label {
+    @apply text-[#FECE31];
+}
+
+/*  */
+.inputField {
+    @apply w-full h-10 block text-base font-normal bg-transparent border-b-2 border-solid border-gray-300 rounded-[30px] my-3 text-black md:font-semibold pl-7;
+}
+
+.inputField:focus {
+    @apply outline-none border-b-2 border-solid border-b-[rgb(199,114,255)];
+}
+
+.btn {
+    @apply h-10 px-3 lg:py-3 lg:px-8 rounded-full uppercase text-white font-medium text-xs lg:text-sm lg:font-bold relative transition-all transform-gpu bg-[#42B42F];
+  }
+
+  .btn:hover {
+    @apply translate-y-[-3px] shadow-md;
+  }
+
+  .btn:active {
+    @apply translate-y-[-1px] shadow-sm;
+  }
+
+  .btn::after {
+    @apply content-[''] h-full w-full absolute top-0 left-0 -z-10 inset-0 rounded-full transition-all duration-500 bg-[#42B42F]
+  }
+
+  .btn:hover::after {
+    @apply scale-x-[1.4] scale-y-[1.6] opacity-0;
+  }

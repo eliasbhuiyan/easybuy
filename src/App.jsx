@@ -1,7 +1,7 @@
 import { Layout } from "./component/Layout";
 import { About } from "./pages/About";
 import { Contact } from "./pages/Contact";
-import { Home } from "./pages/Home"
+import { Home } from "./pages/Home";
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -9,22 +9,22 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { Shop } from "./pages/Shop";
-const router = ()=>{
+import ProductDetails from "./pages/ProductDetails";
+const router = () => {
   return createBrowserRouter(
     createRoutesFromElements(
-      <Route path="/" element={<Layout/>}>
+      <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="/product" element={<Shop />} />
+        <Route path="/productdetails/:slug" element={<ProductDetails />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
       </Route>
     )
   );
-}
+};
 function App() {
-  return (
-    <RouterProvider router={router()} />
-  )
+  return <RouterProvider router={router()} />;
 }
 
-export default App
+export default App;

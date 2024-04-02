@@ -8,6 +8,7 @@ import { FindOneProduct } from "../api/api";
 import Loading from "../component/Loading";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import AddtoCartButton from "../component/AddtoCartButton";
 const ProductDetails = () => {
   let [searchParams] = useSearchParams();
   const [product, setProduct] = useState([]);
@@ -233,7 +234,7 @@ const ProductDetails = () => {
               </div>
             </div>
             <div className="flex gap-5 mt-10">
-              <button className="btn">Add To Cart</button>
+              <AddtoCartButton product={product._id} />
               <button className="btn">Buy Now</button>
             </div>
           </div>

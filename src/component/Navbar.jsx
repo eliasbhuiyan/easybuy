@@ -1,9 +1,7 @@
 import { Link } from "react-router-dom";
 import { FaUserSecret } from "react-icons/fa6";
-import { IoMdArrowDropdown } from "react-icons/io";
 import { FaShoppingBag } from "react-icons/fa";
 import { GiCrossMark } from "react-icons/gi";
-import { Menu } from "@headlessui/react";
 export function Navbar() {
   return (
     <nav className="py-8 bg-bg sticky top-0 left-0 w-full z-50">
@@ -49,39 +47,32 @@ export function Navbar() {
             </li>
           </ul>
           <div className="flex items-center gap-5">
-            <Menu as="div" className="relative">
-              <Menu.Button className="flex">
-                <FaUserSecret className="text-xl" />
-                <IoMdArrowDropdown className="text-2xl" />
-              </Menu.Button>
-              <Menu.Items className="absolute right-0 top-full z-10 mt-2 w-56 shadow-lg">
-                <div className="py-1">
-                  <Menu.Item>
-                    {() => (
-                      <Link
-                        to="/login"
-                        className="block text-center py-3 bg-primary text-white"
-                      >
-                        LogIn
-                      </Link>
-                    )}
-                  </Menu.Item>
-                  <Menu.Item>
-                    {() => (
-                      <Link to="/signup" className="py-3 text-center block">
-                        Sign Up
-                      </Link>
-                    )}
-                  </Menu.Item>
+            <details className="relative">
+              <summary>
+                <FaUserSecret className="text-xl inline-block" />
+              </summary>
+              <div className="py-1 absolute top-full right-0 w-48 shadow-lg">
+                <div>
+                  <Link
+                    to="/login"
+                    className="block text-center py-3 bg-primary text-white"
+                  >
+                    LogIn
+                  </Link>
                 </div>
-              </Menu.Items>
-            </Menu>
-            {/* ========== Cart ========== */}
-            <Menu as="div" className="relative">
-              <Menu.Button>
-                <FaShoppingBag className="text-xl" />
-              </Menu.Button>
-              <Menu.Items className="absolute right-0 top-full z-10 mt-2 shadow-lg md:w-[400px] w-60">
+                <div>
+                  <Link to="/signup" className="py-3 text-center block">
+                    Sign Up
+                  </Link>
+                </div>
+              </div>
+            </details>
+            {/* ========== Cart Start ========== */}
+            <details className="relative">
+              <summary>
+                <FaShoppingBag className="text-xl inline-block" />
+              </summary>
+              <div className="absolute top-full right-0 shadow-sm md:w-[400px] w-60">
                 <div className="flex items-center flex-wrap justify-between md:p-5 p-3 bg-bg">
                   <div className="w-24 h-24 order-1">
                     <img className="w-full" src="images/cart.png" />
@@ -98,17 +89,17 @@ export function Navbar() {
                   <p className="py-4 text-secondary font-dm font-bold text-lg">
                     Subtotal: <span className="text-primary">$44.00</span>
                   </p>
-                  <ul className="flex justify-between">
-                    <li className="py-2 md:py-4 px-4 md:px-10 border-2 border-primary rounded-3xl text-primary font-dm font-bold text-sm md:text-lg">
+                  <div className="flex justify-between">
+                    <button className="py-2 md:py-4 px-4 md:px-10 border-2 border-primary rounded-3xl text-primary font-dm font-bold text-sm md:text-lg">
                       View Cart
-                    </li>
-                    <li className="py-2 md:py-4 px-4 md:px-10 bg-primary rounded-3xl text-white font-dm font-bold text-sm md:text-lg">
+                    </button>
+                    <button className="py-2 md:py-4 px-4 md:px-10 bg-primary rounded-3xl text-white font-dm font-bold text-sm md:text-lg">
                       Checkout
-                    </li>
-                  </ul>
+                    </button>
+                  </div>
                 </div>
-              </Menu.Items>
-            </Menu>
+              </div>
+            </details>
           </div>
         </div>
       </div>

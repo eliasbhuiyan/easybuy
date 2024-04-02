@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { FaUserSecret } from "react-icons/fa6";
 import { IoMdArrowDropdown } from "react-icons/io";
+import { FaShoppingBag } from "react-icons/fa";
+import { GiCrossMark } from "react-icons/gi";
 import { Menu } from "@headlessui/react";
 export function Navbar() {
   return (
@@ -46,33 +48,68 @@ export function Navbar() {
               </Link>
             </li>
           </ul>
-          <Menu as="div" className="flex gap-1 cursor-pointer relative">
-            <Menu.Button className="flex">
-              <FaUserSecret className="text-xl" />
-              <IoMdArrowDropdown className="text-2xl" />
-            </Menu.Button>
-            <Menu.Items className="absolute right-0 top-full z-10 mt-2 w-56 shadow-lg">
-              <div className="py-1">
-                <Menu.Item>
-                  {() => (
-                    <Link
-                      to="/"
-                      className="block text-center py-3 bg-primary text-white"
-                    >
-                      My Account
-                    </Link>
-                  )}
-                </Menu.Item>
-                <Menu.Item>
-                  {() => (
-                    <Link to="/" className="py-3 text-center block">
-                      Sign Up
-                    </Link>
-                  )}
-                </Menu.Item>
-              </div>
-            </Menu.Items>
-          </Menu>
+          <div className="flex items-center gap-5">
+            <Menu as="div" className="relative">
+              <Menu.Button className="flex">
+                <FaUserSecret className="text-xl" />
+                <IoMdArrowDropdown className="text-2xl" />
+              </Menu.Button>
+              <Menu.Items className="absolute right-0 top-full z-10 mt-2 w-56 shadow-lg">
+                <div className="py-1">
+                  <Menu.Item>
+                    {() => (
+                      <Link
+                        to="/login"
+                        className="block text-center py-3 bg-primary text-white"
+                      >
+                        LogIn
+                      </Link>
+                    )}
+                  </Menu.Item>
+                  <Menu.Item>
+                    {() => (
+                      <Link to="/signup" className="py-3 text-center block">
+                        Sign Up
+                      </Link>
+                    )}
+                  </Menu.Item>
+                </div>
+              </Menu.Items>
+            </Menu>
+            {/* ========== Cart ========== */}
+            <Menu as="div" className="relative">
+              <Menu.Button>
+                <FaShoppingBag className="text-xl" />
+              </Menu.Button>
+              <Menu.Items className="absolute right-0 top-full z-10 mt-2 shadow-lg md:w-[400px] w-60">
+                <div className="flex items-center flex-wrap justify-between md:p-5 p-3 bg-bg">
+                  <div className="w-24 h-24 order-1">
+                    <img className="w-full" src="images/cart.png" />
+                  </div>
+                  <div className="order-last md:order-2">
+                    <h2>Black Smart Watch</h2>
+                    <p>$44.00</p>
+                  </div>
+                  <p className="order-3">
+                    <GiCrossMark />
+                  </p>
+                </div>
+                <div className="p-3 md:p-5 bg-white">
+                  <p className="py-4 text-secondary font-dm font-bold text-lg">
+                    Subtotal: <span className="text-primary">$44.00</span>
+                  </p>
+                  <ul className="flex justify-between">
+                    <li className="py-2 md:py-4 px-4 md:px-10 border-2 border-primary rounded-3xl text-primary font-dm font-bold text-sm md:text-lg">
+                      View Cart
+                    </li>
+                    <li className="py-2 md:py-4 px-4 md:px-10 bg-primary rounded-3xl text-white font-dm font-bold text-sm md:text-lg">
+                      Checkout
+                    </li>
+                  </ul>
+                </div>
+              </Menu.Items>
+            </Menu>
+          </div>
         </div>
       </div>
     </nav>

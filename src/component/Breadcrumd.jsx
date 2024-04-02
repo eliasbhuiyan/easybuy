@@ -1,4 +1,3 @@
-import React from 'react'
 import {IoIosArrowForward} from 'react-icons/io'
 import { Link } from 'react-router-dom';
 const Breadcrumd = ({space}) => {

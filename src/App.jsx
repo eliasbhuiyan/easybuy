@@ -10,6 +10,10 @@ import {
 } from "react-router-dom";
 import { Shop } from "./pages/Shop";
 import ProductDetails from "./pages/ProductDetails";
+import Login from "./pages/Login";
+import Signup from "./pages/SignUp";
+import Error from "./pages/Error";
+import Account from "./pages/Account";
 const router = () => {
   return createBrowserRouter(
     createRoutesFromElements(
@@ -19,6 +23,10 @@ const router = () => {
         <Route path="/productdetails/:slug" element={<ProductDetails />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/account" element={<Account />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/*" element={<Error />} />
       </Route>
     )
   );

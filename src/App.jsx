@@ -5,6 +5,7 @@ import { Home } from "./pages/Home";
 import {
   createBrowserRouter,
   createRoutesFromElements,
+  Navigate,
   Route,
   RouterProvider,
 } from "react-router-dom";
@@ -15,7 +16,10 @@ import Signup from "./pages/SignUp";
 import Error from "./pages/Error";
 import Account from "./pages/Account";
 import OtpPage from "./pages/OtpPage";
+import { useSelector } from "react-redux";
 const router = () => {
+  const user = useSelector((state) => state.user_sec.user);
+  console.log(user);
   return createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<Layout />}>
@@ -24,7 +28,10 @@ const router = () => {
         <Route path="/productdetails/:slug" element={<ProductDetails />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/account" element={<Account />} />
+        <Route
+          path="/account"
+          element={!user ? <Navigate to="/" replace /> : <Account />}
+        />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/otp/:userId" element={<OtpPage />} />

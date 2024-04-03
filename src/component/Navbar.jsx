@@ -2,7 +2,15 @@ import { Link } from "react-router-dom";
 import { FaUserSecret } from "react-icons/fa6";
 import { FaShoppingBag } from "react-icons/fa";
 import { GiCrossMark } from "react-icons/gi";
+import { useDispatch, useSelector } from "react-redux";
+import { loggedUser } from "../reducer/userSlice";
 export function Navbar() {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user_sec.user);
+  const hendelSignOut = () => {
+    document.cookie = `sec_token= null;`;
+    dispatch(loggedUser(null));
+  };
   return (
     <nav className="py-8 bg-bg sticky top-0 left-0 w-full z-50">
       <div className="container ">
@@ -53,17 +61,35 @@ export function Navbar() {
               </summary>
               <div className="py-1 absolute top-full right-0 w-48 shadow-lg">
                 <div>
-                  <Link
-                    to="/login"
-                    className="block text-center py-3 bg-primary text-white"
-                  >
-                    LogIn
-                  </Link>
+                  {user ? (
+                    <Link
+                      to="/account"
+                      className="block text-center py-3 bg-primary text-white"
+                    >
+                      My Account
+                    </Link>
+                  ) : (
+                    <Link
+                      to="/login"
+                      className="block text-center py-3 bg-primary text-white"
+                    >
+                      LogIn
+                    </Link>
+                  )}
                 </div>
                 <div>
-                  <Link to="/signup" className="py-3 text-center block">
-                    Sign Up
-                  </Link>
+                  {user ? (
+                    <button
+                      onClick={hendelSignOut}
+                      className="py-3 text-center w-full"
+                    >
+                      Sign Out
+                    </button>
+                  ) : (
+                    <Link to="/signup" className="py-3 text-center block">
+                      Sign Up
+                    </Link>
+                  )}
                 </div>
               </div>
             </details>

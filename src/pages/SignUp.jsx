@@ -9,7 +9,7 @@ import { Title } from "../component/Title";
 import Details from "../component/Details";
 import { useNavigate } from "react-router-dom";
 const Signup = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [loadingBtn, setLoadingBtn] = useState(false);
   const [policy, setPolicy] = useState(false);
   const [policyErr, setPolicyErr] = useState(false);
@@ -29,7 +29,6 @@ const Signup = () => {
     setPolicy(e.target.checked);
     setPolicyErr(false);
   };
-
   const handelSubmit = () => {
     if (!policy) {
       setPolicyErr(true);
@@ -37,7 +36,13 @@ const Signup = () => {
     }
     setLoadingBtn(true);
     axios
-      .post(`${import.meta.env.VITE_API_URL}auth/registration`, regData)
+      .post(`${import.meta.env.VITE_API_URL}auth/registration`, regData, {
+        headers: {
+          Authorization: `Bearer user@${import.meta.env.VITE_PUBLICROUTE}@${
+            import.meta.env.VITE_SWTSECRT
+          }`,
+        },
+      })
       .then((res) => {
         toast.success(res.data.success, {
           position: "bottom-center",
@@ -202,10 +207,7 @@ const Signup = () => {
           </label>
 
           {loadingBtn ? (
-            <button
-              onClick={handelSubmit}
-              className="border-none py-4 px-20 bg-primary font-dm font-bold text-base text-white mt-8 rounded-md"
-            >
+            <button className="border-none py-4 px-20 bg-primary font-dm font-bold text-base text-white mt-8 rounded-md">
               <PropagateLoader color="#fff" size={20} className="pb-3" />
             </button>
           ) : (

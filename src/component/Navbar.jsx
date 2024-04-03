@@ -47,7 +47,7 @@ export function Navbar() {
             </li>
           </ul>
           <div className="flex items-center gap-5">
-            <details className="relative">
+            <details className="relative cursor-pointer">
               <summary>
                 <FaUserSecret className="text-xl inline-block" />
               </summary>
@@ -68,7 +68,7 @@ export function Navbar() {
               </div>
             </details>
             {/* ========== Cart Start ========== */}
-            <details className="relative">
+            <details className="relative cursor-pointer">
               <summary>
                 <FaShoppingBag className="text-xl inline-block" />
               </summary>

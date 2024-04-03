@@ -14,6 +14,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/SignUp";
 import Error from "./pages/Error";
 import Account from "./pages/Account";
+import OtpPage from "./pages/OtpPage";
 const router = () => {
   return createBrowserRouter(
     createRoutesFromElements(
@@ -26,6 +27,7 @@ const router = () => {
         <Route path="/account" element={<Account />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/otp/:userId" element={<OtpPage />} />
         <Route path="/*" element={<Error />} />
       </Route>
     )

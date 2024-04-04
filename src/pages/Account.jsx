@@ -16,11 +16,12 @@ import { GiCrossMark } from "react-icons/gi";
 // import { loggedUser } from "../../reducer/userSlice";
 import { FileUploader } from "react-drag-drop-files";
 import { RiLockPasswordFill } from "react-icons/ri";
+import { useDispatch, useSelector } from "react-redux";
+import { loggedUser } from "../reducer/userSlice";
 
 const Account = () => {
-  //   const user = useSelector((state) => state.user_sec.user);
-  const user = "";
-  //   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user_sec.user);
+  const dispatch = useDispatch();
   const [enableEdit, setEnableEdit] = useState(false);
   const [image, setImage] = useState();
   const [imageUrl, setImageUrl] = useState(null);
@@ -67,9 +68,9 @@ const Account = () => {
         let expirationTime = new Date(currentTime + 10 * 24 * 60 * 60 * 1000);
         let expires = expirationTime.toUTCString();
         document.cookie = `sec_token=${res.data.sec_token}; expires=${expires};`;
-        // dispatch(loggedUser(res?.data.userObject));
+        dispatch(loggedUser(res?.data.userObject));
         toast.success(res?.data.message, {
-          position: "top-right",
+          position: "top-center",
           autoClose: 5000,
           closeOnClick: true,
           theme: "light",
@@ -79,8 +80,9 @@ const Account = () => {
         }, 1500);
       })
       .catch((err) => {
+        console.log(err);
         toast.error(err.response?.data.error, {
-          position: "top-right",
+          position: "top-center",
           autoClose: 5000,
           closeOnClick: true,
           theme: "light",
@@ -94,7 +96,7 @@ const Account = () => {
     setImageUrl(URL.createObjectURL(files[0]));
   };
   return (
-    <section className="w-full relative z-10 pt-12 flex justify-center items-center">
+    <section className="w-full z-10 pt-12 flex justify-center items-center">
       <div className="md:w-5/6 lg:w-3/5 xl:w-1/2 h-fit bg-slate-100 p-10 rounded-lg">
         <ToastContainer />
         <div className="flex justify-between">
@@ -140,9 +142,6 @@ const Account = () => {
               <FaUserSecret />
             </div>
           )}
-          <p className=" text-[#5b5f60] text-base font-semibold uppercase mt-3">
-            ROLE: <span className="text-brand">{user.role}</span>
-          </p>
           <input
             placeholder="Full Name"
             value={enableEdit ? userUpdateData.fullName : user.name}

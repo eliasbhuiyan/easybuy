@@ -8,6 +8,8 @@ try {
     decoded = null;
 }
 
+console.log(decoded);
+
 export const userSlice = createSlice({
     name: 'user',
     initialState: {

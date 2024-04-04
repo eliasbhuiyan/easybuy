@@ -35,7 +35,8 @@ const ProductDetails = () => {
     };
     data();
   }, []);
-
+  console.log(product);
+  useEffect(() => {}, []);
   const handelRate = (value) => {
     setReviewData({ ...reviewData, rating: value });
   };
@@ -234,7 +235,11 @@ const ProductDetails = () => {
               </div>
             </div>
             <div className="flex gap-5 mt-10">
-              <AddtoCartButton product={product._id} />
+              <AddtoCartButton
+                product={product._id}
+                variant={product?.variant[variantID]._id}
+                quantity={countQuantity}
+              />
               <button className="btn">Buy Now</button>
             </div>
           </div>

@@ -54,10 +54,18 @@ export function Navbar() {
               </Link>
             </li>
           </ul>
-          <div className="flex items-center gap-5">
+          <div className="flex items-center gap-6">
             <details className="relative cursor-pointer">
               <summary>
-                <FaUserSecret className="text-xl inline-block" />
+                {user?.avatar ? (
+                  <img
+                    src={user?.avatar}
+                    alt="user"
+                    className="w-12 h-12 rounded-full border inline-block"
+                  />
+                ) : (
+                  <FaUserSecret className="text-2xl inline-block" />
+                )}
               </summary>
               <div className="py-1 absolute top-full right-0 w-48 shadow-lg">
                 <div>
@@ -81,12 +89,15 @@ export function Navbar() {
                   {user ? (
                     <button
                       onClick={hendelSignOut}
-                      className="py-3 text-center w-full"
+                      className="py-3 text-center w-full bg-white"
                     >
                       Sign Out
                     </button>
                   ) : (
-                    <Link to="/signup" className="py-3 text-center block">
+                    <Link
+                      to="/signup"
+                      className="py-3 text-center block bg-white"
+                    >
                       Sign Up
                     </Link>
                   )}
@@ -94,38 +105,40 @@ export function Navbar() {
               </div>
             </details>
             {/* ========== Cart Start ========== */}
-            <details className="relative cursor-pointer">
-              <summary>
-                <FaShoppingBag className="text-xl inline-block" />
-              </summary>
-              <div className="absolute top-full right-0 shadow-sm md:w-[400px] w-60">
-                <div className="flex items-center flex-wrap justify-between md:p-5 p-3 bg-bg">
-                  <div className="w-24 h-24 order-1">
-                    <img className="w-full" src="images/cart.png" />
+            {user && (
+              <details className="relative cursor-pointer">
+                <summary>
+                  <FaShoppingBag className="text-2xl inline-block" />
+                </summary>
+                <div className="absolute top-full right-0 shadow-sm md:w-[400px] w-60">
+                  <div className="flex items-center flex-wrap justify-between md:p-5 p-3 bg-bg">
+                    <div className="w-24 h-24 order-1">
+                      <img className="w-full" src="images/cart.png" />
+                    </div>
+                    <div className="order-last md:order-2">
+                      <h2>Black Smart Watch</h2>
+                      <p>$44.00</p>
+                    </div>
+                    <p className="order-3">
+                      <GiCrossMark />
+                    </p>
                   </div>
-                  <div className="order-last md:order-2">
-                    <h2>Black Smart Watch</h2>
-                    <p>$44.00</p>
+                  <div className="p-3 md:p-5 bg-white">
+                    <p className="py-4 text-secondary font-dm font-bold text-lg">
+                      Subtotal: <span className="text-primary">$44.00</span>
+                    </p>
+                    <div className="flex justify-between">
+                      <button className="py-2 md:py-4 px-4 md:px-10 border-2 border-primary rounded-3xl text-primary font-dm font-bold text-sm md:text-lg">
+                        View Cart
+                      </button>
+                      <button className="py-2 md:py-4 px-4 md:px-10 bg-primary rounded-3xl text-white font-dm font-bold text-sm md:text-lg">
+                        Checkout
+                      </button>
+                    </div>
                   </div>
-                  <p className="order-3">
-                    <GiCrossMark />
-                  </p>
                 </div>
-                <div className="p-3 md:p-5 bg-white">
-                  <p className="py-4 text-secondary font-dm font-bold text-lg">
-                    Subtotal: <span className="text-primary">$44.00</span>
-                  </p>
-                  <div className="flex justify-between">
-                    <button className="py-2 md:py-4 px-4 md:px-10 border-2 border-primary rounded-3xl text-primary font-dm font-bold text-sm md:text-lg">
-                      View Cart
-                    </button>
-                    <button className="py-2 md:py-4 px-4 md:px-10 bg-primary rounded-3xl text-white font-dm font-bold text-sm md:text-lg">
-                      Checkout
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </details>
+              </details>
+            )}
           </div>
         </div>
       </div>

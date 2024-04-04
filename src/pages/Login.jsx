@@ -3,15 +3,15 @@ import Breadcrumd from "../component/Breadcrumd";
 import axios from "axios";
 import { InputBox } from "../component/InputBox";
 import { ToastContainer, toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
 import { PropagateLoader } from "react-spinners";
 import { useDispatch } from "react-redux";
 import { loggedUser } from "../reducer/userSlice";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [loadingBtn, setLoadingBtn] = useState(false);
+  const navigate = useNavigate();
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
@@ -53,7 +53,9 @@ const Login = () => {
             });
             setTimeout(() => {
               navigate("/");
+              window.location.reload();
             }, 1500);
+            setLoadingBtn(false);
           } else {
             toast.error("You are not authorized", {
               position: "top-right",
@@ -114,6 +116,7 @@ const Login = () => {
                 }
               />
             </div>
+
             {loadingBtn ? (
               <button className="border-none py-4 px-20 bg-primary font-dm font-bold text-base text-white mt-8 rounded-md">
                 <PropagateLoader color="#fff" size={20} className="pb-3" />
@@ -126,6 +129,9 @@ const Login = () => {
                 Log In
               </button>
             )}
+            <div className="text-primary mt-5">
+              <Link to="/forgotpassword">Forgotten password?</Link>
+            </div>
           </div>
         </div>
         <div>
@@ -137,9 +143,12 @@ const Login = () => {
             industry. Lorem Ipsum has been the industry&apos;s standard dummy
             text ever since the.
           </p>
-          <button className="border-none py-4 px-20 bg-primary font-dm font-bold text-base text-white mt-8 rounded-md">
+          <Link
+            to="/signup"
+            className="border-none py-4 px-20 bg-primary font-dm font-bold text-base text-white rounded-md mt-5 inline-block"
+          >
             Continue
-          </button>
+          </Link>
         </div>
       </div>
     </section>

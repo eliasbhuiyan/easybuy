@@ -68,9 +68,7 @@ export const Contact = () => {
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d69355.3769993826!2d91.03521534046422!3d23.994258842071574!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x375405bd30bb4f23:0x1b3b2e1fce26f623!2sBrahmanbaria!5e0!3m2!1sen!2sbd!4v1703189100458!5m2!1sen!2sbd"
             className="w-full h-36 md:h-[577px] my-14 md:my-32 rounded-xl"
-            allowfullscreen=""
             loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
           ></iframe>
         </div>
       </div>

@@ -86,7 +86,7 @@ const ProductDetails = () => {
   if (loading) {
     return <Loading />;
   }
-
+ console.log(user);
   return (
     <section className="py-8">
       <ToastContainer />
@@ -237,7 +237,7 @@ const ProductDetails = () => {
             </div>
             <div className="flex gap-5 mt-10">
               <AddtoCartButton
-                product={product._id}
+                productId={product}
                 variant={product?.variant[variantID]._id}
                 quantity={countQuantity}
               />

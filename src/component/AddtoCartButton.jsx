@@ -1,15 +1,20 @@
 import axios from "axios";
 import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
-const AddtoCartButton = ({ product, variant, quantity }) => {
+import { useNavigate } from "react-router-dom";
+const AddtoCartButton = ({ productId, variant, quantity }) => {
+  const navigate = useNavigate()
   const user = useSelector((state) => state.user_sec.user);
   const handelAdd = () => {
-    axios
+    if(!user){
+      navigate("/login")
+    }else{
+      axios
       .post(
         `${import.meta.env.VITE_API_URL}product/addtocart`,
         {
           userId: user.auth,
-          productId: product,
+          productId: productId._id,
           variantId: variant,
           quantity,
         },
@@ -27,6 +32,7 @@ const AddtoCartButton = ({ product, variant, quantity }) => {
       .catch((err) => {
         console.log(err);
       });
+    }
   };
   return (
     <button onClick={handelAdd} className="btn">
@@ -35,7 +41,7 @@ const AddtoCartButton = ({ product, variant, quantity }) => {
   );
 };
 AddtoCartButton.propTypes = {
-  product: PropTypes.object.isRequired,
+  productId: PropTypes.object.isRequired,
   variant: PropTypes.string.isRequired,
   quantity: PropTypes.number.isRequired,
 };

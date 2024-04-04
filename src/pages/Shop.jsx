@@ -24,7 +24,6 @@ export const Shop = () => {
     CatagoryData().then((res) => {
       setCatagory(res.data.catagory);
     });
-    console.log(catagory);
   }, []);
   return (
     <div>

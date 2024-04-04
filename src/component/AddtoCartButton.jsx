@@ -1,9 +1,12 @@
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
+import { cartList } from "../reducer/cartSlice";
+import { ToastContainer, toast } from "react-toastify";
 const AddtoCartButton = ({ productId, variant, quantity }) => {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const user = useSelector((state) => state.user_sec.user);
   const handelAdd = () => {
     if(!user){
@@ -27,7 +30,26 @@ const AddtoCartButton = ({ productId, variant, quantity }) => {
         }
       )
       .then((res) => {
-        console.log(res);
+        if(res.data.info){
+          toast.info(res.data.info, {
+            position: "top-right",
+            autoClose: 5000,
+            closeOnClick: true,
+            theme: "light",
+          });
+        }
+        if(res.data.message){
+          toast.error(res.data.message, {
+            position: "top-right",
+            autoClose: 5000,
+            closeOnClick: true,
+            theme: "light",
+          });
+        }
+        if(res.data.cartList){
+          localStorage.setItem('product_cart', JSON.stringify(res.data.cartList));
+          dispatch(cartList(res.data.cartList));
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -35,9 +57,12 @@ const AddtoCartButton = ({ productId, variant, quantity }) => {
     }
   };
   return (
+    <>
+    <ToastContainer/>
     <button onClick={handelAdd} className="btn">
       Add To Cart
     </button>
+    </>
   );
 };
 AddtoCartButton.propTypes = {

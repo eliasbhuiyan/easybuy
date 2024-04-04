@@ -12,6 +12,7 @@ import AddtoCartButton from "../component/AddtoCartButton";
 import { useSelector } from "react-redux";
 const ProductDetails = () => {
   const user = useSelector((state) => state.user_sec.user);
+  const cartList = useSelector((state) => state.cartList.cartList);
   let [searchParams] = useSearchParams();
   const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -86,7 +87,6 @@ const ProductDetails = () => {
   if (loading) {
     return <Loading />;
   }
- console.log(user);
   return (
     <section className="py-8">
       <ToastContainer />
@@ -236,11 +236,20 @@ const ProductDetails = () => {
               </div>
             </div>
             <div className="flex gap-5 mt-10">
-              <AddtoCartButton
-                productId={product}
-                variant={product?.variant[variantID]._id}
-                quantity={countQuantity}
-              />
+              {
+                cartList ?
+                cartList.map((pdetails)=>(
+                  pdetails.product == product?._id
+                  &&
+                  <button className="btn pointer-events-none">Product Added to Cart</button>
+                  ))
+                  :
+                  <AddtoCartButton
+                    productId={product}
+                    variant={product?.variant[variantID]._id}
+                    quantity={countQuantity}
+                  />
+               }
               <button className="btn">Buy Now</button>
             </div>
           </div>

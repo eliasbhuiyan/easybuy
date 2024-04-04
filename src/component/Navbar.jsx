@@ -1,16 +1,17 @@
 import { Link } from "react-router-dom";
 import { FaUserSecret } from "react-icons/fa6";
-import { FaShoppingBag } from "react-icons/fa";
-import { GiCrossMark } from "react-icons/gi";
 import { useDispatch, useSelector } from "react-redux";
 import { loggedUser } from "../reducer/userSlice";
 import { CartNav } from "./CartNav";
+import { cartList } from "../reducer/cartSlice";
 export function Navbar() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user_sec.user);
   const hendelSignOut = () => {
     document.cookie = `sec_token= null;`;
     dispatch(loggedUser(null));
+    localStorage.setItem('product_cart', null);
+    dispatch(cartList(null));
   };
   return (
     <nav className="py-8 bg-bg sticky top-0 left-0 w-full z-50">
@@ -108,9 +109,6 @@ export function Navbar() {
             {/* ========== Cart Start ========== */}
             {user && (
               <details className="relative cursor-pointer">
-                <summary>
-                  <FaShoppingBag className="text-2xl inline-block" />
-                </summary>
                 <CartNav />
               </details>
             )}

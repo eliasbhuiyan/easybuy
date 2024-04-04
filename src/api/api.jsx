@@ -17,22 +17,22 @@ const CatagoryData = () => {
     return error;
   }
 };
-const CatagorybyId = (auth, id) => {
-  try {
-    const res = axios.post(
-      `${import.meta.env.VITE_API_URL}catagory/getcatagorybyid`,
-      { id },
-      {
-        headers: {
-          Authorization: `Bearer user@${auth}@${import.meta.env.VITE_SWTSECRT}`,
-        },
-      }
-    );
-    return res;
-  } catch (error) {
-    return error;
-  }
-};
+// const CatagorybyId = (auth, id) => {
+//   try {
+//     const res = axios.post(
+//       `${import.meta.env.VITE_API_URL}catagory/getcatagorybyid`,
+//       { id },
+//       {
+//         headers: {
+//           Authorization: `Bearer user@${auth}@${import.meta.env.VITE_SWTSECRT}`,
+//         },
+//       }
+//     );
+//     return res;
+//   } catch (error) {
+//     return error;
+//   }
+// };
 const SubCatagoryData = () => {
   try {
     const res = axios.get(
@@ -88,15 +88,17 @@ const FindOneProduct = (id) => {
   }
 };
 const ShowCart = (auth) => {
-  try {
-    const res = axios.get(`${import.meta.env.VITE_API_URL}product/showcart`, {
-      headers: {
-        Authorization: `Bearer user@${auth}@${import.meta.env.VITE_SWTSECRT}`,
-      },
-    });
-    return res;
-  } catch (error) {
-    return error;
+  if(auth){
+    try {
+      const res = axios.get(`${import.meta.env.VITE_API_URL}product/showcart`, {
+        headers: {
+          Authorization: `Bearer user@${auth}@${import.meta.env.VITE_SWTSECRT}`,
+        },
+      });
+      return res;
+    } catch (error) {
+      return error;
+    }
   }
 };
 
@@ -104,7 +106,7 @@ export {
   CatagoryData,
   SubCatagoryData,
   ProductData,
-  CatagorybyId,
+  // CatagorybyId,
   FindOneProduct,
   ShowCart,
 };

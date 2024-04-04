@@ -21,7 +21,6 @@ import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 const Router = () => {
   const user = useSelector((state) => state.user_sec.user);
-  console.log(user);
   return createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<Layout />}>

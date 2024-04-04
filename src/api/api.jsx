@@ -1,23 +1,5 @@
 import axios from "axios";
 
-// const FindUser = (auth) => {
-//   try {
-//     const res = axios.post(
-//       `${import.meta.env.VITE_API_URL}auth/finduser`,
-//       {
-//         id: auth,
-//       },
-//       {
-//         headers: {
-//           Authorization: `Bearer user@${auth}@${import.meta.env.VITE_SWTSECRT}`,
-//         },
-//       }
-//     );
-//     return res;
-//   } catch (error) {
-//     return error;
-//   }
-// };
 const CatagoryData = () => {
   try {
     const res = axios.get(
@@ -105,14 +87,24 @@ const FindOneProduct = (id) => {
     return error;
   }
 };
+const ShowCart = (auth) => {
+  try {
+    const res = axios.get(`${import.meta.env.VITE_API_URL}product/showcart`, {
+      headers: {
+        Authorization: `Bearer user@${auth}@${import.meta.env.VITE_SWTSECRT}`,
+      },
+    });
+    return res;
+  } catch (error) {
+    return error;
+  }
+};
 
 export {
-  //   AllMerchant,
-  //   UserList,
   CatagoryData,
   SubCatagoryData,
   ProductData,
   CatagorybyId,
   FindOneProduct,
-  // FindUser,
+  ShowCart,
 };

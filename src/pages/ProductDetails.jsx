@@ -9,7 +9,9 @@ import Loading from "../component/Loading";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AddtoCartButton from "../component/AddtoCartButton";
+import { useSelector } from "react-redux";
 const ProductDetails = () => {
+  const user = useSelector((state) => state.user_sec.user);
   let [searchParams] = useSearchParams();
   const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -35,7 +37,6 @@ const ProductDetails = () => {
     };
     data();
   }, []);
-  console.log(product);
   useEffect(() => {}, []);
   const handelRate = (value) => {
     setReviewData({ ...reviewData, rating: value });
@@ -52,7 +53,7 @@ const ProductDetails = () => {
         },
         {
           headers: {
-            Authorization: `Bearer user@${import.meta.env.VITE_PUBLICROUTE}@${
+            Authorization: `Bearer user@${user.auth}@${
               import.meta.env.VITE_SWTSECRT
             }`,
           },

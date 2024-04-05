@@ -51,11 +51,16 @@ const Login = () => {
             res.data?.userObject?.role == "user"
           ) {
             let currentTime = new Date().getTime();
-            let expirationTime = new Date(currentTime + 10 * 24 * 60 * 60 * 1000);
+            let expirationTime = new Date(
+              currentTime + 10 * 24 * 60 * 60 * 1000
+            );
             let expires = expirationTime.toUTCString();
             document.cookie = `sec_token=${res.data.sec_token}; expires=${expires};`;
             dispatch(loggedUser(res.data.userObject));
-            localStorage.setItem('product_cart', JSON.stringify(res.data.cartList));
+            localStorage.setItem(
+              "product_cart",
+              JSON.stringify(res.data.cartList)
+            );
             dispatch(cartList(res.data.cartList));
             setLoadingBtn(false);
           } else {

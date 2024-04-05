@@ -96,3 +96,33 @@
   .btn:hover::after {
     @apply scale-x-[1.4] scale-y-[1.6] opacity-0;
   }
+
+  /* ===*/
+  .form-container {
+    @apply w-80 rounded-xl bg-primary p-7 text-white
+  }
+  .title {
+    @apply text-center text-2xl font-bold
+  }
+  
+
+  
+  .input-group {
+    @apply mt-4 text-sm
+  }  
+  .input-group input {
+    @apply w-full rounded-lg outline-none bg-secondary py-1 px-2 text-white
+  }
+  
+  .input-group input:focus {
+    @apply border-[#a78bfa]          
+  }
+
+  .forgot a:hover, .signup a:hover {
+    @apply underline
+  }
+  
+  .sign {
+    @apply block w-full bg-[#a78bfa] p-3 text-center text-primary border-none rounded-lg font-semibold
+  }
+  

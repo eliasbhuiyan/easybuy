@@ -236,20 +236,22 @@ const ProductDetails = () => {
               </div>
             </div>
             <div className="flex gap-5 mt-10">
-              {
-                cartList ?
-                cartList.map((pdetails)=>(
-                  pdetails.product == product?._id
-                  &&
-                  <button className="btn pointer-events-none">Product Added to Cart</button>
-                  ))
-                  :
-                  <AddtoCartButton
-                    productId={product}
-                    variant={product?.variant[variantID]._id}
-                    quantity={countQuantity}
-                  />
-               }
+              {cartList ? (
+                cartList.map(
+                  (pdetails) =>
+                    pdetails.product == product?._id && (
+                      <button className="btn pointer-events-none">
+                        Product Added to Cart
+                      </button>
+                    )
+                )
+              ) : (
+                <AddtoCartButton
+                  productId={product}
+                  variant={product?.variant[variantID]._id}
+                  quantity={countQuantity}
+                />
+              )}
               <button className="btn">Buy Now</button>
             </div>
           </div>

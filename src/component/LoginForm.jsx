@@ -16,70 +16,56 @@ export const LoginForm = () => {
   });
   const handelLogin = () => {
     setLoadingBtn(true);
-    // try {
-    axios
-      .post(
-        `${import.meta.env.VITE_API_URL}auth/login`,
-        {
-          email: loginData.email,
-          password: loginData.password,
-        },
-        {
-          headers: {
-            Authorization: `Bearer user@${import.meta.env.VITE_PUBLICROUTE}@${
-              import.meta.env.VITE_SWTSECRT
-            }`,
+    try {
+      axios
+        .post(
+          `${import.meta.env.VITE_API_URL}auth/login`,
+          {
+            email: loginData.email,
+            password: loginData.password,
           },
-        }
-      )
-      .then((res) => {
-        toast.success(res?.data.message, {
-          position: "top-right",
-          autoClose: 5000,
-          closeOnClick: true,
-          theme: "light",
-        });
-        setTimeout(() => {
-          window.location.reload();
-        }, 1500);
-        if (
-          res.data?.userObject?.role == "admin" ||
-          res.data?.userObject?.role == "merchant" ||
-          res.data?.userObject?.role == "user"
-        ) {
+          {
+            headers: {
+              Authorization: `Bearer user@${import.meta.env.VITE_PUBLICROUTE}@${
+                import.meta.env.VITE_SWTSECRT
+              }`,
+            },
+          }
+        )
+        .then((res) => {
+          setTimeout(() => {
+            window.location.reload();
+          }, 1500);
+          toast.success(res.data.message, {
+            position: "top-right",
+            autoClose: 5000,
+            closeOnClick: true,
+            theme: "light",
+          });
           let currentTime = new Date().getTime();
           let expirationTime = new Date(currentTime + 10 * 24 * 60 * 60 * 1000);
           let expires = expirationTime.toUTCString();
           document.cookie = `sec_token=${res.data.sec_token}; expires=${expires};`;
-          dispatch(loggedUser(res.data.userObject));
           localStorage.setItem(
             "product_cart",
             JSON.stringify(res.data.cartList)
           );
+          dispatch(loggedUser(res.data.userObject));
           dispatch(cartList(res.data.cartList));
           setLoadingBtn(false);
-        } else {
-          toast.error("You are not authorized", {
+        })
+        .catch((err) => {
+          toast.error(err.response.data.error, {
             position: "top-right",
             autoClose: 5000,
             closeOnClick: true,
             theme: "light",
           });
           setLoadingBtn(false);
-        }
-      })
-      .catch((err) => {
-        toast.error(err.response.data.error, {
-          position: "top-right",
-          autoClose: 5000,
-          closeOnClick: true,
-          theme: "light",
         });
-        setLoadingBtn(false);
-      });
-    // } catch (error) {
-    //   console.log("Faild to login!");
-    // }
+    } catch (error) {
+      console.log("Faild to login!");
+    }
   };
   return (
     <div className="fixed z-50 top-0 left-0 w-full h-full bg-[rgba(0,0,0,0.5)] flex justify-center items-center">

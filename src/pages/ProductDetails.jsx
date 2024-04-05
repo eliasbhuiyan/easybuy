@@ -240,7 +240,10 @@ const ProductDetails = () => {
                 cartList.map(
                   (pdetails) =>
                     pdetails.product == product?._id && (
-                      <button className="btn pointer-events-none">
+                      <button
+                        key={pdetails.product}
+                        className="btn pointer-events-none"
+                      >
                         Product Added to Cart
                       </button>
                     )

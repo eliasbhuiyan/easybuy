@@ -35,43 +35,27 @@ const Login = () => {
           }
         )
         .then((res) => {
-          toast.success(res?.data.message, {
+          setTimeout(() => {
+            navigate("/");
+            window.location.reload();
+          }, 1500);
+          toast.success(res.data.message, {
             position: "top-right",
             autoClose: 5000,
             closeOnClick: true,
             theme: "light",
           });
-          setTimeout(() => {
-            navigate("/");
-            window.location.reload();
-          }, 1500);
-          if (
-            res.data?.userObject?.role == "admin" ||
-            res.data?.userObject?.role == "merchant" ||
-            res.data?.userObject?.role == "user"
-          ) {
-            let currentTime = new Date().getTime();
-            let expirationTime = new Date(
-              currentTime + 10 * 24 * 60 * 60 * 1000
-            );
-            let expires = expirationTime.toUTCString();
-            document.cookie = `sec_token=${res.data.sec_token}; expires=${expires};`;
-            dispatch(loggedUser(res.data.userObject));
-            localStorage.setItem(
-              "product_cart",
-              JSON.stringify(res.data.cartList)
-            );
-            dispatch(cartList(res.data.cartList));
-            setLoadingBtn(false);
-          } else {
-            toast.error("You are not authorized", {
-              position: "top-right",
-              autoClose: 5000,
-              closeOnClick: true,
-              theme: "light",
-            });
-            setLoadingBtn(false);
-          }
+          let currentTime = new Date().getTime();
+          let expirationTime = new Date(currentTime + 10 * 24 * 60 * 60 * 1000);
+          let expires = expirationTime.toUTCString();
+          document.cookie = `sec_token=${res.data.sec_token}; expires=${expires};`;
+          localStorage.setItem(
+            "product_cart",
+            JSON.stringify(res.data.cartList)
+          );
+          dispatch(loggedUser(res.data.userObject));
+          dispatch(cartList(res.data.cartList));
+          setLoadingBtn(false);
         })
         .catch((err) => {
           toast.error(err.response?.data.error, {

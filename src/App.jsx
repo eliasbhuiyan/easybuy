@@ -19,6 +19,7 @@ import OtpPage from "./pages/OtpPage";
 import { useSelector } from "react-redux";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
+import Cancel from "./pages/Cancel";
 const Router = () => {
   const user = useSelector((state) => state.user_sec.user);
   return createBrowserRouter(
@@ -38,6 +39,7 @@ const Router = () => {
         <Route path="/otp/:userId" element={<OtpPage />} />
         <Route path="/forgotpassword" element={<ForgotPassword />} />
         <Route path="/resetpassword" element={<ResetPassword />} />
+        <Route path="/cancel" element={<Cancel />} />
         <Route path="/*" element={<Error />} />
       </Route>
     )

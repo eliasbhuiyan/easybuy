@@ -1,13 +1,11 @@
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
-import { useNavigate } from "react-router-dom";
 import { cartList } from "../reducer/cartSlice";
 import { ToastContainer, toast } from "react-toastify";
 import { LoginForm } from "./LoginForm";
 import { useState } from "react";
 const AddtoCartButton = ({ productId, variant, quantity }) => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user_sec.user);
   const [show, setShow] = useState(false);

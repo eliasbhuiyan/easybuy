@@ -10,9 +10,9 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AddtoCartButton from "../component/AddtoCartButton";
 import { useSelector } from "react-redux";
+import { BuyProduct } from "../component/BuyProduct";
 const ProductDetails = () => {
   const user = useSelector((state) => state.user_sec.user);
-  const cartList = useSelector((state) => state.cartList.cartList);
   let [searchParams] = useSearchParams();
   const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -236,26 +236,16 @@ const ProductDetails = () => {
               </div>
             </div>
             <div className="flex gap-5 mt-10">
-              {cartList ? (
-                cartList.map(
-                  (pdetails) =>
-                    pdetails.product == product?._id && (
-                      <button
-                        key={pdetails.product}
-                        className="btn pointer-events-none"
-                      >
-                        Product Added to Cart
-                      </button>
-                    )
-                )
-              ) : (
-                <AddtoCartButton
-                  productId={product}
-                  variant={product?.variant[variantID]._id}
-                  quantity={countQuantity}
-                />
-              )}
-              <button className="btn">Buy Now</button>
+              <AddtoCartButton
+                productId={product}
+                variant={product?.variant[variantID]._id}
+                quantity={countQuantity}
+              />
+              <BuyProduct
+                productId={product}
+                variant={product?.variant[variantID]}
+                quantity={countQuantity}
+              />
             </div>
           </div>
         </div>

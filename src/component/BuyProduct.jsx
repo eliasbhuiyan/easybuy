@@ -20,7 +20,7 @@ export const BuyProduct = ({ productId, variant, quantity }) => {
         },
         {
           headers: {
-            Authorization: `Bearer user@${user.auth}@${
+            Authorization: `Bearer user@${user?.auth}@${
               import.meta.env.VITE_SWTSECRT
             }`,
           },
@@ -36,7 +36,7 @@ export const BuyProduct = ({ productId, variant, quantity }) => {
           },
           {
             headers: {
-              Authorization: `Bearer user@${user.auth}@${
+              Authorization: `Bearer user@${user?.auth}@${
                 import.meta.env.VITE_SWTSECRT
               }`,
             },

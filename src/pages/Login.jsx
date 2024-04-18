@@ -6,6 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { PropagateLoader } from "react-spinners";
 import { useDispatch } from "react-redux";
 import { loggedUser } from "../reducer/userSlice";
+import { cartList } from "../reducer/cartSlice";
 import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -33,6 +34,7 @@ const Login = () => {
               }`,
             },
           }
+          
         )
         .then((res) => {
           setTimeout(() => {

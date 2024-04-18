@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { loggedUser } from "../reducer/userSlice";
 import { cartList } from "../reducer/cartSlice";
@@ -9,7 +9,6 @@ import { useState } from "react";
 export const LoginForm = () => {
   const dispatch = useDispatch();
   const [loadingBtn, setLoadingBtn] = useState(false);
-  const navigate = useNavigate();
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
@@ -110,7 +109,7 @@ export const LoginForm = () => {
           )}
         </div>
         <p className="signup mt-3">
-          Don't have an account?
+          Don&apos;t have an account?
           <Link rel="noopener noreferrer" to="/signup">
             Sign up
           </Link>

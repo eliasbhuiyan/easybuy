@@ -42,7 +42,6 @@ export const BuyProduct = ({ productId, variant, quantity }) => {
             },
           }
         );
-        console.log(res.data.id);
         await stripe
           .redirectToCheckout({
             sessionId: res.data.id,

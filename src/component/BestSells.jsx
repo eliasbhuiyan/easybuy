@@ -33,14 +33,14 @@ const BestSells = ({ product }) => {
       <div className="container">
         <h2 className="heading">Our Bestsellers</h2>
         <Slider {...settings}>
-          <div className="relative mx-2 lg:mx-5">
-            {product.map(
-              (item) =>
-                item.status === "approved" && (
-                  <Product key={item._id} product={item} />
-                )
-            )}
-          </div>
+          {product.map(
+            (item) =>
+              item.status === "approved" && (
+                <div key={item._id} className="relative mx-2 lg:mx-5">
+                  <Product product={item} />
+                </div>
+              )
+          )}
         </Slider>
       </div>
     </div>

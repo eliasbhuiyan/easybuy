@@ -1,12 +1,16 @@
 import { useNavigate } from "react-router-dom";
-const Product = ({ product }) => {
+const Product = ({ product, width }) => {
   const item = product;
   const navigate = useNavigate();
   const handelDetails = (item) => {
     navigate(`/productdetails/:${item.slug}?pid=${item._id}`);
   };
   return (
-    <div className="w-[48%] sm:w-[31%] border rounded-md cursor-pointer">
+    <div
+      className={`${
+        width ? width : "w-[48%] sm:w-[31%]"
+      }  border rounded-md cursor-pointer`}
+    >
       <div
         onClick={() => handelDetails(item)}
         className="relative group overflow-hidden"

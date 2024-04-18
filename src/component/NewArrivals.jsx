@@ -37,7 +37,7 @@ const NewArrivals = ({ product }) => {
             (item) =>
               item.status === "approved" && (
                 <div key={item._id} className="relative mx-2 lg:mx-5">
-                  <Product product={item} />
+                  <Product product={item} width={"w-full"} />
                 </div>
               )
           )}
